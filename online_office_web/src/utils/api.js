@@ -33,3 +33,16 @@ axios.interceptors.response.use(success => {
         }
     }
 })
+
+
+let base = "";
+
+
+// 传递json格式的post请求
+export const postRequest = (url, params) => {
+    return axios({
+        method: "post",
+        url: "${base}${url}",
+        data: params
+    })
+}
