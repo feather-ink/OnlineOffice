@@ -1,4 +1,4 @@
-# online_office
+# online_office_web
 
 ## Project setup
 ```

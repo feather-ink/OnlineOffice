@@ -31,27 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-/frontend/online_office/.DS_Store
-/frontend/online_office/node_modules
-/frontend/online_office//dist
-
-
-# local env files
-/frontend/online_office/.env.local
-/frontend/online_office/.env.*.local
-
-# Log files
-/frontend/online_office/npm-debug.log*
-/frontend/online_office/yarn-debug.log*
-/frontend/online_office/yarn-error.log*
-/frontend/online_office/pnpm-debug.log*
-
-# Editor directories and files
-/frontend/online_office/.idea
-/frontend/online_office/.vscode
-/frontend/online_office/*.suo
-/frontend/online_office/*.ntvs*
-/frontend/online_office/*.njsproj
-/frontend/online_office/*.sln
-/frontend/online_office/*.sw?
