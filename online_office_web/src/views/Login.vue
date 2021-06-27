@@ -1,6 +1,10 @@
 <template>
     <div>
-        <el-form ref="ruleForm" :rules="rules" :model="loginForm" class="loginContainer">
+        <el-form ref="ruleForm"
+                 :rules="rules"
+                 :model="loginForm"
+                 v-loading="loading"
+                 class="loginContainer">
             <h3 class="loginTitle">系统登录</h3>
             <!-- prop 与校验规则对应上 -->
             <el-form-item prop="username">
@@ -45,7 +49,19 @@
             submitLogin() {
                 this.$refs.ruleForm.validate((valid) => {
                     if (valid) {
-                        alert('submit!');
+                        this.loading = true;
+                        this.postRequest('/login', this.loginForm).then(
+                            resp => {
+                                this.loading = false;
+                                // JSON.stringify()
+                                if (resp) {
+                                    // 存储用户token
+                                    const tokenStr = resp.obj.tokenHead + resp.obj.token;
+                                    window.sessionStorage.setItem('tokenStr', tokenStr)
+                                    // replace 不可回到上一页
+                                    this.$router.replace('/home')
+                                }
+                            });
                     } else {
                         this.$message({
                             showClose: true,
