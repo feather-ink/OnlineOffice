@@ -6,20 +6,20 @@ import Home from '../views/Home.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Login',
-    component: Login,
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: Home,
-  }
+    {
+        path: '/',
+        name: 'Login',
+        component: Login,
+    },
+    {
+        path: '/home',
+        name: 'Home',
+        component: Home,
+    }
 ]
 
 const router = new VueRouter({
-  routes
+    routes
 })
 
 export default router

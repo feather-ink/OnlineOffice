@@ -27,7 +27,7 @@ Vue.prototype.deleteRequest = deleteRequest;
 
 //  程序入口
 new Vue({
-  router,
-  render: h => h(App)
+    router,
+    render: h => h(App)
 // 手动挂载vue.app
 }).$mount('#app')

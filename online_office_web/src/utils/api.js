@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Message } from 'element-ui';
+import {Message} from 'element-ui';
 import router from '../router';
 
 // interceptors 拦截器
@@ -21,7 +21,7 @@ axios.interceptors.response.use(success => {
             Message.error({message: success.data.message});
             return;
         }
-        if(success.data.message) {
+        if (success.data.message) {
             Message.success({message: success.data.message});
         }
     }
