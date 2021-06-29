@@ -25,3 +25,12 @@ logging:
   level:
     com.online.server.mapper: debug
 
+jwt:
+  # Jwt存储的请求头
+  tokenHeader: Authorization
+  # Jwt加密秘钥
+  secret: feather-ink
+  # Jwt 的超期限时间（60*60）*24
+  expiration: 86400
+  # Jwt负载中拿到开头
+  tokenHead: Bearer
