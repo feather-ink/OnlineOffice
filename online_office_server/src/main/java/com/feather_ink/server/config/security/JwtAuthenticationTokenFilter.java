@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class JwtAuthencationTokenFilter extends OncePerRequestFilter {
+public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Value("${jwt.tokenHeader}")
     private String tokenHeader;
@@ -24,7 +24,7 @@ public class JwtAuthencationTokenFilter extends OncePerRequestFilter {
     private String tokenHead;
 
     @Autowired
-    private  JwtTokenUtil jwtTokenUtil;;
+    private JwtTokenUtil jwtTokenUtil;;
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -46,7 +46,7 @@ public class JwtAuthencationTokenFilter extends OncePerRequestFilter {
                 // 登录
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                 // 验证token是否有效，重新设置用户对象
-                if (jwtTokenUtil.validateToken(tokenHead, userDetails)) {
+                if (jwtTokenUtil.validateToken(authToken, userDetails)) {
                     UsernamePasswordAuthenticationToken authenticationToken =
                             new UsernamePasswordAuthenticationToken(
                                     userDetails,

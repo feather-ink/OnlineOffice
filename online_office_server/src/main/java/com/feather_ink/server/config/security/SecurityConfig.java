@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,6 +33,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(
+                "/login",
+                "/logout",
+                "/ws/**",
+                "/css/**",
+                "/js/**",
+                "/index.html",
+                "favicon.ico",
+                // swagger 放行
+                "/doc.html",
+                "/webjars/**",
+                "/swagger-resources/**",
+                "/v2/api-docs/**",
+                "/captcha"
+        );
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
@@ -39,16 +59,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login", "logout")
-                .permitAll()
+                //需要认证
                 .anyRequest()
                 .authenticated()
                 .and()
+                // 禁用缓存
                 .headers()
                 .cacheControl();
 
         // 添加jwt  登录授权过滤器
-        http.addFilterBefore(jwtAuthencationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         // 添加自定义未授权和未登录接口返回
         http.exceptionHandling()
@@ -76,7 +96,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Bean
-    public JwtAuthencationTokenFilter jwtAuthencationTokenFilter() {
-        return new JwtAuthencationTokenFilter();
+    public JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter() {
+        return new JwtAuthenticationTokenFilter();
     }
 }

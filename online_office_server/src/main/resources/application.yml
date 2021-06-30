@@ -15,7 +15,7 @@ mybatis-plus:
   # 配置Mapper 映射文件
   mapper-locations: classpath*:/mapper/*Mapper.xml
   # 配置MyBatis数据返回类型的别名
-  type-aliases-package: com.online.server.pojo
+  type-aliases-package: com.feather_ink.server.pojo
   configuration:
     # 自动驼峰命名
     map-underscore-to-camel-case: false
@@ -23,7 +23,7 @@ mybatis-plus:
 # Mybatis SQL 打印
 logging:
   level:
-    com.online.server.mapper: debug
+    com.feather_ink.server.mapper: debug
 
 jwt:
   # Jwt存储的请求头
